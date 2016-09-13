@@ -47,11 +47,11 @@ chuckNorris.src = "hero.png";
 var player = new Player();
 var keyboard = new keyboard();
 
-
 var LAYER_COUNT = 3;
 var LAYER_BACKGOUND = 0;
 var LAYER_PLATFORMS = 1;
 var LAYER_LADDERS = 2;
+
 
 var MAP = { tw: 60, th: 15 };
 var TILE = 35;
@@ -60,6 +60,9 @@ var TILESET_PADDING = 2;
 var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
+
+var tileset = document.createElement("img");
+tileset.src = "tileset.png";
 
  // abitrary choice for 1m
 var METER = TILE;
@@ -76,12 +79,10 @@ var FRICTION = MAXDX * 6;
  // (a large) instantaneous jump impulse
 var JUMP = METER * 1500;
 
-var tileset = document.createElement("img");
-tileset.src = "tileset.png";
 
 function cellAtPixelCoord(layer, x,y)
 {
-if(x<0 || x>SCREEN_WIDTH)
+if(x<0 || x>SCREEN_WIDTH || y<0)
 return 1;
 // let the player drop of the bottom of the screen (this means death)
 if(y>SCREEN_HEIGHT)
@@ -90,7 +91,7 @@ return cellAtTileCoord(layer, p2t(x), p2t(y));
 };
 function cellAtTileCoord(layer, tx, ty)
 {
-if(tx<0 || tx>=MAP.tw)
+if(tx<0 || tx>=MAP.tw || ty<0)
 return 1;
 // let the player drop of the bottom of the screen (this means death)
 if(ty>=MAP.th)
@@ -196,9 +197,8 @@ function run()
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
 
+
 initialize();
-
-
 
 //-------------------- Don't modify anything below here
 

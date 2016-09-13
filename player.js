@@ -1,4 +1,3 @@
-
 var Player = function() {
 this.image = document.createElement("img");
 this.position = new vector2();
@@ -13,11 +12,10 @@ this.jumping = false;
 this.image.src = "hero.png";
 };
 
-
 Player.prototype.update = function(deltaTime)
-{
+{		
 
-var left = false;
+	var left = false;
  var right = false;
  var jump = false;
 
@@ -38,7 +36,7 @@ var left = false;
  var ddx = 0; // acceleration
  var ddy = GRAVITY;
 
- if (left)
+if (left)
  ddx = ddx - ACCEL; // player wants to go left
  else if (wasleft)
  ddx = ddx + FRICTION; // player was going left, but not any more
@@ -53,11 +51,11 @@ var left = false;
  }
 
 
-
 // calculate the new position and velocity:
 this.position.y = Math.floor(this.position.y + (deltaTime * this.velocity.y));
 this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
-this.velocity.x = bound(this.velocity.x + (deltaTime * ddx), -MAXDX, MAXDX);
+
+ this.velocity.x = bound(this.velocity.x + (deltaTime * ddx), -MAXDX, MAXDX);
  this.velocity.y = bound(this.velocity.y + (deltaTime * ddy), -MAXDY, MAXDY);
 
   if ((wasleft && (this.velocity.x > 0)) ||
@@ -80,7 +78,7 @@ var ny = (this.position.y)%TILE; // true if player overlaps below
 var cell = cellAtTileCoord(LAYER_PLATFORMS, tx, ty);
 var cellright = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty);
 var celldown = cellAtTileCoord(LAYER_PLATFORMS, tx, ty + 1);
-
+var celldiag = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty + 1);
 
 // If the player has vertical velocity, then check to see if they have hit a platform
  // below or above, in which case, stop their vertical velocity, and clamp their
@@ -94,9 +92,10 @@ if ((celldown && !cell) || (celldiag && !cellright && nx)) {
  this.jumping = false; // (or jumping)
  ny = 0; // no longer overlaps the cells below
 }
- }
 
-else if (this.velocity.y < 0) {
+}
+ 
+ else if (this.velocity.y < 0) {
 if ((cell && !celldown) || (cellright && !celldiag && nx)) {
  // clamp the y position to avoid jumping into platform above
  this.position.y = tileToPixel(ty + 1);
@@ -122,9 +121,6 @@ this.velocity.x = 0; // stop horizontal velocity
  }
 }
 }
-
-
-
 
 Player.prototype.draw = function()
 {
