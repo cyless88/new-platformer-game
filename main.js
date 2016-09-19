@@ -44,8 +44,7 @@ var fpsTime = 0;
 var chuckNorris = document.createElement("img");
 chuckNorris.src = "hero.png";
 
-var player = new Player();
-var keyboard = new keyboard();
+
 
 var LAYER_COUNT = 3;
 var LAYER_BACKGOUND = 0;
@@ -63,6 +62,9 @@ var TILESET_COUNT_Y = 14;
 
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
+
+var player = new Player();
+var keyboard = new keyboard();
 
  // abitrary choice for 1m
 var METER = TILE;
