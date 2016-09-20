@@ -25,10 +25,15 @@ vector2.prototype.normalize = function() {
 
 }
 
-vector2.prototype.subtract = function(v2) {
-
+vector2.prototype.subtract = function(v2) 
+{
+this.x -= v2.x;
+this.y -= v2.y;
 }
 
-vector2.prototype.multiplyScalar = function(f) {
-
+vector2.prototype.multiplyScalar = function(f) 
+{
+var newVector = new vector2();
+newVector.set(this.x * otherVector, this.y * otherVector);
+return newVector;
 }
