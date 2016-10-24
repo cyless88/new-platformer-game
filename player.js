@@ -105,6 +105,10 @@ if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && this.cooldownTimer <= 0) {
 sfxFire.play();
 this.cooldownTimer = 0.3;
 // Shoot a bullet
+var moveRight = true;
+var bullet = new bullet(this.position.x, this.position.y, moveRight);
+
+bullets.push(bullet);
 }
 
  var wasleft = this.velocity.x < 0;
@@ -208,6 +212,12 @@ else if (this.velocity.x < 0) {
 this.position.x = tileToPixel(tx + 1);
 this.velocity.x = 0; // stop horizontal velocity
  }
+}
+
+if(cellAtTileCoord(LAYER_OBJECT_TRIGGERS, tx, ty) == true)
+{
+// game over man, game over
+gameOver = true;
 }
 }
 
