@@ -1,6 +1,6 @@
-var bullet = function(x, y, moveRight)
+var Bullet = function(x, y, moveRight)
 {
-this.sprite = new sprite("bullet.png");
+this.sprite = new Sprite("bullet.png");
 this.sprite.buildAnimation(1, 1, 32, 32, -1, [0]);
 this.sprite.setAnimationOffset(0, 0, 0);
 this.sprite.setLoop(0, false);
@@ -15,12 +15,12 @@ this.velocity.set(-MAXDX *2, 0);
 }
 
 
-bullet.prototype.update = function(deltaTime)
+Bullet.prototype.update = function(deltaTime)
 {
 this.sprite.update(deltaTime);
 this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
 }
-bullet.prototype.draw = function()
+Bullet.prototype.draw = function()
 {
 var screenX = this.position.x - worldOffsetX;
 this.sprite.draw(context, screenX, this.position.y);

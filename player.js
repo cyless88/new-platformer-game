@@ -106,7 +106,7 @@ sfxFire.play();
 this.cooldownTimer = 0.3;
 // Shoot a bullet
 var moveRight = true;
-var bullet = new bullet(this.position.x, this.position.y, moveRight);
+var bullet = new Bullet(this.position.x, this.position.y, moveRight);
 
 bullets.push(bullet);
 }
